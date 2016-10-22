@@ -15,6 +15,10 @@ app.set("view engine", "ejs");
 app.use(methodOverride("_method"));
 
 //Routes
+        //index root
+app.get("/", function(req, res){
+   res.render("index") ;
+});
 
  //start the server
 app.listen(process.env.PORT, process.env.IP, function(){

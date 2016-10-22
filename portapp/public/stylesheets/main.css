@@ -1,3 +1,22 @@
 body{
     color: red;
 }
+.wrapper{
+    min-height: 100%;
+    position: relative;
+}
+
+footer{
+    text-align: center;
+    color: #7d7d7d;
+    bottom: 0;
+    position: absolute;
+    height: 100px;
+    width: 100%;
+    left: 0;
+    right: 0;
+    background: #ededed;
+}
+footer p{
+    padding-top: 50px;
+}
