@@ -15,7 +15,19 @@ app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
 app.use(methodOverride("_method"));
 
-
+//creating my projects
+// Project.create({
+//     image: "./images/03.png",
+//     name: "Zilla Paper",
+//     description: "A creative freelance writing platform"
+// }, function(err, project){
+//     if(err){
+//         console.log(err)
+//     }else{
+//         console.log("newly created project");
+//         console.log(project);
+//     } 
+// });
 
 //Routes
         //index root

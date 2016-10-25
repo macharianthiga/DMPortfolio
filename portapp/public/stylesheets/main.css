@@ -148,7 +148,7 @@ ul{
     content:"";
     display: block;
     clear: both;
-    /*margin-bottom: 150px;*/
+    margin-bottom: 150px;
 }
 .tester{
     background: green;
