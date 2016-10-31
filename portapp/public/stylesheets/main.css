@@ -88,7 +88,7 @@ ul{
     width: 25%;
     float: left;
     position: relative;
-    /*display: inline-block;*/
+    display: inline-block;
     overflow: hidden;
     transition: transform 0.4s, opacity 0.1s 0.3s;
 }
@@ -144,7 +144,7 @@ ul{
 }
 
 
-.content ul:after{
+.content:after{
     content:"";
     display: block;
     clear: both;
@@ -175,6 +175,7 @@ footer p{
 
     .content li{
         width: 33.33%;
+        /*height: 300px;*/
        
     }
 

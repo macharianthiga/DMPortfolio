@@ -1,5 +1,6 @@
 
 <% include partials/header %>
+
 <div class="banner">
     <div class="holder">
         <h1>MACHARIA NTHIGA<br>
@@ -16,95 +17,21 @@
     </div>
 </div>
 <div class="content">
-        <ul>
-            <li>
-                <img src="./images/01.png">
-                <div class="project-info">
-                    <h2>Site Name</h2>
-                    <p>Simple Description</p>
-                    <button href="#">See More</button>
-                </div>
-            </li>
-            <li><img src="./images/02.png">
-                <div class="project-info">
-                    <h2>Site Name</h2>
-                    <p>Simple Description</p>
-                    <button href="#">See More</button>
-                </div>
-            </li>
-            <li><img src="./images/03.png">
-                <div class="project-info">
-                    <h2>Site Name</h2>
-                    <p>Simple Description</p>
-                    <button href="#">See More</button>
-                </div>
-            </li>
-            <li><img src="./images/04.png">
-                <div class="project-info">
-                    <h2>Site Name</h2>
-                    <p>Simple Description</p>
-                    <button href="#">See More</button>
-                </div>
-            </li>
-            <li><img src="./images/05.png">
-                <div class="project-info">
-                    <h2>Site Name</h2>
-                    <p>Simple Description</p>
-                    <button href="#">See More</button>
-                </div>
-            </li>
-            <li><img src="./images/06.png">
-                <div class="project-info">
-                    <h2>Site Name</h2>
-                    <p>Simple Description</p>
-                    <button href="#">See More</button>
-                </div>
-            </li>
-            <li><img src="./images/07.png">
-                <div class="project-info">
-                    <h2>Site Name</h2>
-                    <p>Simple Description</p>
-                    <button href="#">See More</button>
-                </div>
-            </li>
-            <li><img src="./images/08.png">
-                <div class="project-info">
-                    <h2>Site Name</h2>
-                    <p>Simple Description</p>
-                    <button href="#">See More</button>
-                </div>
-            </li>
-            <li><img src="./images/09.png">
-                <div class="project-info">
-                    <h2>Site Name</h2>
-                    <p>Simple Description</p>
-                    <button href="#">See More</button>
-                </div>
-            </li>
-            <li><img src="./images/10.png">
-                <div class="project-info">
-                    <h2>Site Name</h2>
-                    <p>Simple Description</p>
-                    <button href="#">See More</button>
-                </div>
-            </li>
-            <li><img src="./images/11.png">
-                <div class="project-info">
-                    <h2>Site Name</h2>
-                    <p>Simple Description</p>
-                    <button href="#">See More</button>
-                </div>
-            </li>
-            <li><img src="./images/12.png">
-                <div class="project-info">
-                    <h2>Site Name</h2>
-                    <p>Simple Description</p>
-                    <button href="#">See More</button>
-                </div>
-            </li>
-            <!--<li><img src="./images/13.png"></li>-->
-        </ul>
+       <% projects.forEach(function(project){ %>
+          <ul>
+              <li>
+                  <img src="<%=project.image%>">
+                  <div class="project-info">
+                      <h2><%=project.name %></h2>
+                      <p><%=project.description %></p>
+                      <button href="#">See More</button>
+                  </div>
+                  
+              </li>
+          </ul>
+       <% }) %>
 </div>
+
 
 
 <% include partials/footer%>
