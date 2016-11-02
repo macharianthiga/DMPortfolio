@@ -1,0 +1,18 @@
+<% include partials/header %>
+
+<div class="showWrapper">
+    <div class="container">
+        <div class="row">
+            <div class="thumbnail">
+                <img src="<%=project.image%>">
+                 <h2><%=project.name%></h2>
+                 <p class="detail"><%=project.description %></p>
+                 <p><span>Backend: <%=project.stack%></span> </p>
+                 <p><a target="_blank" href="<%=project.url%>"><%=project.url%></a></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content"></div>
+
+<% include partials/footer %>
