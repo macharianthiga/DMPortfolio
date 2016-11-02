@@ -57,6 +57,13 @@ app.get("/", function(req, res){
 app.get("/about", function(req, res){
     res.render("about")
 });
+
+//Guest route (Signed in)
+app.get("/guest", function(req,res){
+    res.render("guest")
+});
+
+
 //show route
 app.get("/:id", function(req, res){
     Project.findById(req.params.id, function(err,foundProject){
