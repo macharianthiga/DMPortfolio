@@ -5,6 +5,7 @@ bodyParser             = require("body-parser"),
 mongoose               = require("mongoose"),
 passport               = require("passport"),
 Project                = require("./models/index"),
+User                   = require("./models/user"),
 methodOverride         = require("method-override"),
 localStrategy          = require("passport-local");
 
@@ -13,6 +14,19 @@ mongoose.connect("mongodb://localhost/portdb1");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
+
+app.use(require("express-session")({
+    secret: "What's your secret?",
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(new localStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 app.use(methodOverride("_method"));
 
 //creating my projects
@@ -59,10 +73,48 @@ app.get("/about", function(req, res){
 });
 
 //Guest route (Signed in)
-app.get("/guest", function(req,res){
+app.get("/guest", isLoggedIn, function(req,res){
     res.render("guest")
 });
 
+//Sign up routes
+
+   //show sign up
+app.get("/signup", function(req, res){
+    res.render("signup")
+});
+
+    
+   //handle signup
+app.post("/signup", function(req,res){
+    User.register(new User({username:req.body.username}), req.body.password, function(err, user){
+       if(err){
+           console.log(err);
+            return res.render("signup");
+       } 
+       passport.authenticate("local")(req, res, function(){
+            res.redirect("/guest");
+       });
+    });
+});
+
+//Login route show
+app.get("/login", function(req,res){
+     res.render("login")
+});
+
+app.post("/login", passport.authenticate("local", {
+    successRedirect: "/guest",
+    failureRedirect: "/login"
+}), function(req, res){
+    
+});
+
+//logout route
+app.get("/logout", function(req, res){
+    req.logout();
+    res.redirect("/")
+});
 
 //show route
 app.get("/:id", function(req, res){
@@ -78,6 +130,12 @@ app.get("/:id", function(req, res){
    
 });
 
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect("/login");
+}
  //start the server
 app.listen(process.env.PORT, process.env.IP, function(){
    console.log("The portfolio server has started"); 
