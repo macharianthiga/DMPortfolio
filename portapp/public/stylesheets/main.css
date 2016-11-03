@@ -76,6 +76,17 @@ h1, h2{
 .nav1 a:hover {
     color: #4ad7b1;
 }
+.cont-error{
+    position: absolute;
+    padding-top: 1em;
+}
+.alert-success{
+    background-color: rgba(223,240,216, 0.7);
+    color: #337ab7;
+}
+.alert-danger{
+    background-color: rgba(242,222,222, 0.8);
+}
 input[type="search"] {
     background: transparent;
     outline: none;
@@ -281,7 +292,7 @@ ul{
 }
 .form-wrapper h2{
     color: #337ab7;
-    padding: 1em;
+    padding: 1.5em;
 }
 .footer{
     margin-top: 2em;

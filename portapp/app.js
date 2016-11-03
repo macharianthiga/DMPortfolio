@@ -4,6 +4,7 @@ app                    = express(),
 bodyParser             = require("body-parser"),
 mongoose               = require("mongoose"),
 passport               = require("passport"),
+flash                  = require("connect-flash"),
 Project                = require("./models/index"),
 User                   = require("./models/user"),
 methodOverride         = require("method-override"),
@@ -14,6 +15,7 @@ mongoose.connect("mongodb://localhost/portdb1");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
+app.use(flash());
 
 app.use(require("express-session")({
     secret: "What's your secret?",
@@ -30,6 +32,8 @@ passport.deserializeUser(User.deserializeUser());
 app.use(methodOverride("_method"));
 app.use(function(req,res,next){
     res.locals.currentUser= req.user;
+    res.locals.error = req.flash("error");
+    res.locals.success = req.flash("success");
     next();
 });
 
@@ -93,10 +97,11 @@ app.get("/signup", function(req, res){
 app.post("/signup", function(req,res){
     User.register(new User({username: req.body.username}), req.body.password, function(err, user){
        if(err){
-           console.log(err);
+            req.flash("error", err.message);
             return res.render("signup");
        } 
        passport.authenticate("local")(req, res, function(){
+            req.flash("success", "Welcome to my site. It's nice to meet you");
             res.redirect("/guest");
        });
     });
@@ -104,19 +109,23 @@ app.post("/signup", function(req,res){
 
 //Login route show
 app.get("/login", function(req,res){
-     res.render("login")
+     res.render("login");
+     
 });
 
 app.post("/login", passport.authenticate("local", {
     successRedirect: "/guest",
-    failureRedirect: "/login"
+    failureRedirect: "/login",
+    failureFlash : true,
+    successFlash: true
 }), function(req, res){
-    
+   
 });
 
 //logout route
 app.get("/logout", function(req, res){
     req.logout();
+    req.flash("success", "Logged you out successfully");
     res.redirect("/")
 });
 
@@ -138,6 +147,7 @@ function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
         return next();
     }
+    req.flash("error", "Please login first");
     res.redirect("/login");
 }
  //start the server
