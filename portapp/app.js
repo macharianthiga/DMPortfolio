@@ -8,6 +8,7 @@ flash                  = require("connect-flash"),
 Project                = require("./models/index"),
 User                   = require("./models/user"),
 methodOverride         = require("method-override"),
+allRoutes                 = require("./routes/routes"),
 localStrategy          = require("passport-local");
 
 //use the packages
@@ -16,6 +17,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
 app.use(flash());
+
 
 app.use(require("express-session")({
     secret: "What's your secret?",
@@ -36,6 +38,8 @@ app.use(function(req,res,next){
     res.locals.success = req.flash("success");
     next();
 });
+
+app.use(allRoutes);
 
 //creating my projects
 // Project.create(
@@ -60,96 +64,8 @@ app.use(function(req,res,next){
 //     } 
 // });
 
-//Routes
-        //index root
-app.get("/", function(req, res){
-    //get all projects from the database
-    Project.find({}, function(err, allProjects){
-        if(err){
-            console.log(err);
-        } else{
-            res.render("index", {projects: allProjects});
-            
-        }
-    });
-    
-});
 
-//about me route
-app.get("/about", function(req, res){
-    res.render("about")
-});
 
-//Guest route (Signed in)
-app.get("/guest", isLoggedIn, function(req,res){
-    res.render("guest")
-});
-
-//Sign up routes
-
-   //show sign up
-app.get("/signup", function(req, res){
-    res.render("signup")
-});
-
-    
-   //handle signup
-app.post("/signup", function(req,res){
-    User.register(new User({username: req.body.username}), req.body.password, function(err, user){
-       if(err){
-            req.flash("error", err.message);
-            return res.render("signup");
-       } 
-       passport.authenticate("local")(req, res, function(){
-            req.flash("success", "Welcome to my site. It's nice to meet you");
-            res.redirect("/guest");
-       });
-    });
-});
-
-//Login route show
-app.get("/login", function(req,res){
-     res.render("login");
-     
-});
-
-app.post("/login", passport.authenticate("local", {
-    successRedirect: "/guest",
-    failureRedirect: "/login",
-    failureFlash : true,
-    successFlash: true
-}), function(req, res){
-   
-});
-
-//logout route
-app.get("/logout", function(req, res){
-    req.logout();
-    req.flash("success", "Logged you out successfully");
-    res.redirect("/")
-});
-
-//show route
-app.get("/:id", function(req, res){
-    Project.findById(req.params.id, function(err,foundProject){
-        if(err){
-            res.redirect("/");
-        } else{
-            res.render("show", {project: foundProject});
-            // console.log(foundProject);
-        }
-    });
-    
-   
-});
-
-function isLoggedIn(req, res, next){
-    if(req.isAuthenticated()){
-        return next();
-    }
-    req.flash("error", "Please login first");
-    res.redirect("/login");
-}
  //start the server
 app.listen(process.env.PORT, process.env.IP, function(){
    console.log("The portfolio server has started"); 
