@@ -28,6 +28,10 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use(methodOverride("_method"));
+app.use(function(req,res,next){
+    res.locals.currentUser= req.user;
+    next();
+});
 
 //creating my projects
 // Project.create(
