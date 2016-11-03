@@ -87,7 +87,7 @@ app.get("/signup", function(req, res){
     
    //handle signup
 app.post("/signup", function(req,res){
-    User.register(new User({username:req.body.username}), req.body.password, function(err, user){
+    User.register(new User({username: req.body.username}), req.body.password, function(err, user){
        if(err){
            console.log(err);
             return res.render("signup");
