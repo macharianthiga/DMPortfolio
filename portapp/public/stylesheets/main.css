@@ -199,6 +199,7 @@ ul{
     font-weight: 600;
     font-size: 2em;
     color: #337ab7;
+    padding-top: .5em;
 }
 .thumbnail p{
     font-size: 1.6em;
@@ -256,14 +257,22 @@ ul{
     margin: 0;
     background: #d4e8f4;
     text-align: center;
-    font-size: 1.25em;
-    line-height: 2.5rem;
-    padding: 1.5em .8em 1em .8em;
+    font-size: 1.35em;
+    line-height: 3rem;
+    padding: 1.5em .8em 1.5em .8em;
 }
-.guestWrapper p{
-    /*text-indent: 2em;*/
+.guestWrapper .btn{
+    margin: 1.5em .4em;
 }
-
+#guestTopic{
+    text-align: center;
+    color: #4ad7b1;
+}
+#guestSub{
+    font-weight: 600;
+    color: #337ab7;
+    padding-bottom: .5em;
+}
 .footer{
     margin-top: 2em;
     text-align: center;
@@ -370,5 +379,7 @@ ul{
     .navbar{
         border-radius: 0;
     }
+    
+    
     
 }
