@@ -397,10 +397,10 @@ ul{
     .banner h1 span{
         font-size: 2rem;
     }
-    .nav a { 
+    .nav1 a { 
         display: none;
     }
-    .nav label{
+    .nav1 label{
         font-size: .9em;
     }
     
