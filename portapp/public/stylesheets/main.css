@@ -13,6 +13,24 @@ body {
 	height:100%;
 	font-family: "Josefin sans", Helvetica, sans-serif;
 }
+p img{
+    max-width: 120px;
+    padding-top: 3.5em;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    -wenkit-margin-after: 0px;
+}
+/*.im{*/
+/*     position: absolute;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    right: 0;*/
+/*    bottom: 0;*/
+/*    background-image: url("../images/perslogo-01.png");*/
+/*    background-repeat: no-repeat;*/
+/*    background-size: contain;*/
+/*}*/
 h1, h2{
     margin: 0;
 }
@@ -50,7 +68,7 @@ h1, h2{
 }
 .banner h1{
     color: #fff;
-    padding: 2em 0;
+    padding: .6em 0 1.5em 0;
     font-size: 3em;
     line-height: 1.25;
     font-weight: 700;
@@ -335,7 +353,7 @@ ul{
 @media only screen and (max-width: 900px){
    
    .banner h1{
-        padding: 1.5em 0;
+        padding: .2em 0 1.5em 0;
         font-size: 2.5em;
         font-weight: 700;
     }
@@ -369,6 +387,14 @@ ul{
     .footer{
         margin-top: .2em;
     }
+        p img{
+        max-width: 100px;
+        padding-top: 1em;
+        padding-bottom: 0;
+        margin-bottom: 0;
+        -wenkit-margin-after: 0px;
+    }
+  
 
 }
 
@@ -399,7 +425,7 @@ ul{
     padding: 1em .5em;
 }
     .banner h1{
-        padding: 1.5em 0;
+        padding: .2em 0 1.5em 0;
         font-size: 2em;
         font-weight: 700;
     }
@@ -426,6 +452,14 @@ ul{
     .footer{
         margin-top: 1.5em;
     }
+     p img{
+        max-width: 100px;
+        padding-top: 1em;
+        padding-bottom: 0;
+        margin-bottom: 0;
+        -wenkit-margin-after: 0px;
+    }
+  
 
 }
 
