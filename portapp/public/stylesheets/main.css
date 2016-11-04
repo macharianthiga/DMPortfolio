@@ -384,6 +384,15 @@ ul{
     max-width: 90%;
     margin: auto;
 }
+.cont-error{
+    position: absolute;
+    padding-top: 1rem;
+    min-width: 90%;
+    left:5%;
+}
+.alert{
+    padding:5px;
+}
 .back{
     text-align: left !important;
     font-size: 1.25em;
